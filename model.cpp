@@ -6,6 +6,7 @@
 #include <sstream>
 #include <vector>
 #include <utility>
+#include <cmath>
 
 using namespace std;
 
@@ -43,12 +44,14 @@ Model::Model(string filename){
 		lineStream >> varInClause;
 		while(!lineStream.fail()){
 			if(varInClause != 0){
+				//initializes to false
 				mClauses[i].insert(pair<int, bool>(varInClause, false));
 			}
 			lineStream >> varInClause;
 		}
 		lineStream.clear();
 	}
+	myFile.close();
 }
 
 Model::~Model(){
@@ -57,14 +60,7 @@ Model::~Model(){
 		mClauses[i].clear();
 	}
 	mClauses.clear();
-}
 
-vector<bool>* Model::getVariables(){
-	return mVariables;
-}
-
-vector< map<int, bool> >* Model::getClauses(){
-	return &mClauses;
 }
 
 void Model::printVariables(){

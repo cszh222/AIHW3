@@ -10,17 +10,14 @@ using namespace std;
 
 class Model{
 
-private:
+//just make the members public for easy access
+//no need for getter and setter
+public:
 	vector<bool> *mVariables;
 	vector< map<int, bool> > mClauses;
-
-public: 
 	
 	Model(string filename);
 	~Model();
-
-	vector<bool>* getVariables();
-	vector< map<int, bool> >* getClauses();
 
 	void printVariables();
 };
