@@ -61,9 +61,9 @@ short Dpll::checkClauseSatisfied(int clause){
 		}
 		else{
 			if(it->first > 0 && *(it->second) != *(*mModel->mVariables)[it->first-1])
-				cerr <<"something happened";
+				cerr <<"something happened2\n";
 			if(it->first < 0 && *(it->second) == *(*mModel->mVariables)[abs(it->first)-1])
-				cerr <<"something happened2";
+				cerr <<"something happened3\n";
 			if(*(it->second)){
 				trueFound = 1;
 				break;
@@ -106,6 +106,18 @@ bool Dpll::solve(){
 	}
 	//early termination
 	if(clausesSat == mModel->mClauses.size()){
+		//assign false to rest of the unassigned variables
+		for(int i=0; i< mModel->mVariables->size(); i++){
+			if((*mModel->mVariables)[i] == NULL){
+				(*mModel->mVariables)[i] = new bool;
+				*(*mModel->mVariables)[i] = false;
+			}			
+		}
+		//assign variables and do one last check for sanity
+		assignVars();
+		if(checkSatisfied() != mModel->mClauses.size()){
+			cerr <<"somethind bad happened\n";
+		}
 		return true;
 	}
 

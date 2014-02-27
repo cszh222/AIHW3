@@ -83,7 +83,7 @@ Model::~Model(){
 
 void Model::printVariables(){
 	for(int i=0; i < mVariables->size(); i++){
-		cout << ( *((*mVariables)[i]) ? (i+1) : -1*(i+1)) << " ";
+		cout << ( *(*mVariables)[i] ? (i+1) : -1*(i+1)) << " ";
 	}
 	cout << endl;
 }

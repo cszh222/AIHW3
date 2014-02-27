@@ -1,5 +1,5 @@
 GPP = g++
-CXXFLAGS = -g -O3
+CXXFLAGS = -g
 
 all: DPLL
 
