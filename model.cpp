@@ -30,46 +30,60 @@ Model::Model(string filename){
 		}
 	}
 
-	this->mVariables = new vector<bool>(vars);
+	this->mVariables = new vector<bool*>(vars);
+
+	//initialize to null
+	for (int i=0; i< mVariables->size(); i++){
+		(*mVariables)[i] = NULL;
+	}
 
 	int varInClause;
 	stringstream lineStream;
 
 	for(int i=0; i<clauses; i++){
-		mClauses.push_back(map<int, bool>());
+		mClauses.push_back(map<int, bool*>());
 		//read each line
 		getline(myFile, line);
 		lineStream << line;
 		lineStream >> varInClause;
 		while(!lineStream.fail()){
 			if(varInClause != 0){
-				mClauses[i].insert(pair<int, bool>(varInClause, false));
+				//initialize to null
+				mClauses[i].insert(pair<int, bool*>(varInClause, NULL));
 			}
 			lineStream >> varInClause;
 		}
 		lineStream.clear();
 	}
+
+	myFile.close();
 }
 
 Model::~Model(){
+	for(int i=0; i<mVariables->size(); i++){
+		if((*mVariables)[i] != NULL){
+			delete (*mVariables)[i];
+			(*mVariables)[i] = NULL;
+		}
+	}
 	delete mVariables;
+
+	map<int, bool*>::iterator it;
 	for(int i=0; i< mClauses.size(); i++){
+		for(it=mClauses[i].begin(); it!=mClauses[i].end(); it++){
+			if(it->second != NULL){
+				delete it->second;
+				it->second = NULL;
+			}
+		}
 		mClauses[i].clear();
 	}
 	mClauses.clear();
 }
 
-vector<bool>* Model::getVariables(){
-	return mVariables;
-}
-
-vector< map<int, bool> >* Model::getClauses(){
-	return &mClauses;
-}
-
 void Model::printVariables(){
 	for(int i=0; i < mVariables->size(); i++){
-		cout << ((*mVariables)[i] ? "1" : "0") << " ";
+		cout << ( *((*mVariables)[i]) ? (i+1) : -1*(i+1)) << " ";
 	}
 	cout << endl;
 }
