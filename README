@@ -1,0 +1,12 @@
+This program uses the DPLL algorithm to implement a SAT solver.
+Included Files:
+ - main.cpp
+ - model.h
+ - model.cpp
+ - dpll.h
+ - dpll.cpp
+ - Makefile
+ - dpll2.csv - data file generated from solving equations in A3Formulas
+Included Directories:
+ - A3Formulas - set of cnf equations that SAT solver is required to solve
+ - fixedDimacs - set of cnf equations used for debugging
