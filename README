@@ -1,0 +1,17 @@
+This program uses the WalkSAT algorithm to implement a SAT solver.
+Author: Chang Zheng
+
+Included Files:
+ - main.cpp
+ - model.h
+ - model.cpp
+ - walksat.h
+ - walksat.cpp
+ - Makefile
+ - walkSat2.csv - data file generated from solving equations in A3Formulas
+Included Directories:
+ - A3Formulas - set of cnf equations that SAT solver is required to solve
+ - fixedDimacs - set of cnf equations used for debugging
+
+Compile with the command "make" in the main project directory.
+Run with the command "./walkSat" in the main project directory.
