@@ -1,4 +1,6 @@
 This program uses the DPLL algorithm to implement a SAT solver.
+Author: Chang Zheng
+
 Included Files:
  - main.cpp
  - model.h
@@ -10,3 +12,6 @@ Included Files:
 Included Directories:
  - A3Formulas - set of cnf equations that SAT solver is required to solve
  - fixedDimacs - set of cnf equations used for debugging
+
+Compile with the command "make" in the main project directory.
+Run with the command "./DPLL" in the main project directory.
